@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            background-image: url(images/background.jpg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 1520px 730px;
+            background-color: black;
+        }
+        *{
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+            box-sizing: border-box;
+
+        }
+
+
+
+        nav {
+            background-color: black;
+            height: 80px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        label.logo {
+            color: rgb(255, 183, 0);
+            font-size: 25px;
+            font-family: cursive;
+            font-weight: bold;
+        }
+        nav ul {
+            display: flex;
+        }
+        nav ul li {
+            display: inline-block;
+            margin: 0 5px;
+        }
+        nav ul li a {
+            color: rgb(255, 183, 0);
+            font-size: 15px;
+            padding: 7px 13px;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+        a:active, a:hover {
+            color: white;
+        }
+        
+        
+
+        main{
+            padding-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        h1{
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+            
+        }
+        main form input{
+
+            width: 500px;
+            height: 41px;
+            color: black;
+            padding-left: 3px;
+            background-color: white;
+            border: white;
+            border-radius: 5px;
+
+        }
+        main form input[type="submit"]{
+            width: 90px;
+            height: 40px;
+            cursor: pointer;
+            color: black;
+            background-color: white;
+            font-size:15px;
+            font-weight: bold;
+        }
+        img{
+            height: 270px;
+            width: 200px;
+        }
+        .container{
+            padding: 2rem 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            
+            
+        }
+        .card{
+            color:black;
+            text-align: center;
+            background-color:white;
+            padding: 2px;
+            border: 2px solid white;
+            border-radius: 5px;
+            height: 380px;
+        
+        }
+
+        .book-button{
+            align-items: center;
+            text-align: center;
+            color: rgb(255, 183, 0) ;
+            background-color: black;
+            padding: 5px;
+            text-decoration: none;
+            border: 1px solid black;
+            border-radius: 4px;
+        }
+        .book-button:hover{
+            color: white;
+        }
+
+
+        .search-bar {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .search-bar input {
+            width: 80%;
+            max-width: 400px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid white;
+        }
+
+
+
+
+        #ticket {
+            
+            margin-top: 20px;
+            border: 1px solid white;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        #pay-button{
+            background-color:black;
+            color:rgb(255, 183, 0);
+            padding: 10px;
+            border: none;
+            border-radius:5px;
+            cursor: pointer;
+        }
+        #pay-button:hover{
+            color: white;
+        }
+        .ticket-item {
+            margin-bottom: 20px; /* Space between cart items */
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .remove-from-ticket{
+            background-color: black;
+            color: rgb(255, 183, 0);
+            border: none;
+            padding: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .remove-from-ticket:hover{
+            color: white;
+        }
+        .ticket-item h3 {
+            margin: 0 0 5px; 
+        }
+        .ticket-item h4 {
+            margin: 0 0 10px;
+            color: #333;
+        }
+        .ticket-item div {
+            margin-bottom: 10px; 
+        }
+        .ticket-item button {
+            display: block;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                display: none;
+                background-color: black;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 100%;
+            }
+            nav ul li {
+                text-align: center;
+                margin: 10px 0;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            nav .menu-toggle {
+                display: block;
+                font-size: 25px;
+                color: rgb(255, 183, 0);
+                cursor: pointer;
+            }
+
+            #searchinput {
+                width: 400px;
+            }
+            .container{
+                padding: 2rem 0;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 3rem;
+            }
+            
+        }
+
+
+        @media (max-width: 600px) {
+            #searchinput {
+                padding: 5px;
+            }
+            .container{
+                padding: 2rem 0;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3rem;
+            }
+
+            #searchinput {
+                width: 250px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+<div id="notification" style="display: none; position: fixed; top: 10px; left: 50%; transform: translateX(-50%); background-color: #28a745; color: white; padding: 10px 20px; border-radius: 5px; z-index: 1001;">
+    Item added to the cart!
+</div>
+
+    <main>
+
+        <nav>
+            <label class="logo">Fiesta</label>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+            <ul>
+                <li><a class="active" href="index.html">Home</a></li>
+                <li><a href="#" id="ticket-button">Your tickets</a></li>
+            </ul>
+        </nav>
+
+
+
+        <div id="ticket" style="display: none; position: fixed; top: 80px; right: 20px; width: 300px; background-color: black; border: 1px solid black; border-radius: 8px; padding: 15px; z-index: 1000;">
+            <h2 style="color:rgb(255, 183, 0) ;">Your tickets</h2>
+            <div id="ticket-items" style="background-color: white;"></div>
+            <p id="total-price" style="color: white;">Total Price: Rs 0</p>
+            <button id="pay-button">Pay</button>
+        </div>
+
+
+        <h1>Search your events</h1><br>
+        <form>
+            <input type="text" name="" placeholder="search" id="searchinput">
+        </form>
+
+
+
+        <div class="container">
+            <div class="card" data-id="1">
+                <img src="images/dj7.jpg">
+                <h3>Sushant</h3>
+                <h5>24 Dec 2024</h5>
+                <h5>Chennai</h5>
+                <h4> Rs 500</h4>
+                <button class="book-button">Book now</button>
+            </div>
+            <div class="card" data-id="2">
+                <img src="images/dj5.jpg">
+                <h3>Rebaka</h3>
+                <h5>27 nov 2024</h5>
+                <h5>Mumbai</h5>
+                <h4> Rs 500</h4>
+                <button class="book-button">Book now</button>
+            </div>
+            <div class="card" data-id="3">
+                <img src="images/concert2.jpg">
+                <h3>Domingo</h3>
+                <h5>18 Dec 2024</h5>
+                <h5>Bangalore</h5>
+                <h4> Rs 700</h4>
+                <button class="book-button">Book now</button>
+            </div>
+            <div class="card" data-id="4">
+                <img src="images/dj6.jpg">
+                <h3>Dustin, Jayson and Emily</h3>
+                <h5>18 sep 2024</h5>
+                <h5>Chennai</h5>
+                <h4> Rs 700</h4>
+                <button class="book-button">Book now</button>
+            </div>
+            <div class="card" data-id="5">
+                <img src="images/concert3.jpg">
+                <h3>Malone</h3>
+                <h5>23 oct 2024</h5>
+                <h5>Mumbai</h5>
+                <h4> Rs 800</h4>
+                <button class="book-button">Book now</button>
+            </div>
+            <div class="card" data-id="6">
+                <img src="images/concert4.jpg">
+                <h3>Natali Idall</h3>
+                <h5>24 sep 2024</h5>
+                <h5>Bangalore</h5>
+                <h4> Rs 500</h4>
+                <button class="book-button">Book now</button>
+            </div>
+            <div class="card" data-id="7">
+                <img src="images/dj4.jpg">
+                <h3>Johan, Smit and Andro</h3>
+                <h5>5 dec 2024</h5>
+                <h5>Mumbai</h5>
+                <h4> Rs 600</h4>
+                <button class="book-button">Book now</button>
+            </div>
+            <div class="card" data-id="8">
+                <img src="images/concert6.jpg">
+                <h3>AR Rahman</h3>
+                <h5>8 sep 2024</h5>
+                <h5>Chennai</h5>
+                <h4> Rs 1000</h4>
+                <button class="book-button">Book now</button>
+            </div>
+            <div class="card" data-id="9">
+                <img src="images/dj3.jpg">
+                <h3>Monk Earl</h3>
+                <h5>22 sep 2024</h5>
+                <h5>Chennai</h5>
+                <h4> Rs 400</h4>
+                <button class="book-button">Book now</button>
+            </div>
+            <div class="card" data-id="10">
+                <img src="images/dj8.jpg">
+                <h3>Zedix</h3>
+                <h5>2 aug 2024</h5>
+                <h5>Bangalore</h5>
+                <h4> Rs 800</h4>
+                <button class="book-button">Book now</button>
+            </div>
+            <div class="card" data-id="11">
+                <img src="images/concert1.jpg">
+                <h3>Aditya Anand</h3>
+                <h5>12 Nov 2024</h5>
+                <h5>chennai</h5>
+                <h4> Rs 500</h4>
+                <button class="book-button">Book now</button>
+            </div>
+            <div class="card" data-id="12">
+                <img src="images/concert7.jpg">
+                <h3>Bille Elish</h3>
+                <h5>16 oct 2024</h5>
+                <h5>Mumbai</h5>
+                <h4> Rs 1000</h4>
+                <button class="book-button">Book now</button>
+            </div>
+            <div class="card" data-id="13">
+                <img src="images/concert8.jpg">
+                <h3>Brandin Reed</h3>
+                <h5>8 sep 2024</h5>
+                <h5>Bangalore</h5>
+                <h4> Rs 900</h4>
+                <button class="book-button">Book now</button>
+            </div>
+            <div class="card" data-id="14">
+                <img src="images/dj2.jpg">
+                <h3>Mike Jackson</h3>
+                <h5>12 dec 2024</h5>
+                <h5>Chennai</h5>
+                <h4> Rs 500</h4>
+                <button class="book-button">Book now</button>
+            </div>
+            <div class="card" data-id="15">
+                <img src="images/concert5.jpg">
+                <h3>Miami</h3>
+                <h5>17 dec 2024</h5>
+                <h5>Mumbai</h5>
+                <h4> Rs 700</h4>
+                <button class="book-button">Book now</button>
+            </div>
+            <div class="card" data-id="16">
+                <img src="images/dj1.jpg">
+                <h3>Licious</h3>
+                <h5>2 sep 2024</h5>
+                <h5>Mumbai</h5>
+                <h4> Rs 400</h4>
+                <button class="book-button">Book now</button>
+            </div>
+        </div>
+    </main>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+
+        function toggleMenu() {
+            document.querySelector('nav ul').classList.toggle('active');
+        }
+        $(document).ready(function () {
+        $("#ticket-button").on("click", function (e) {
+            e.preventDefault();
+            $("#ticket").toggle();
+        });
+
+
+
+        $("#searchinput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $(".container div").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
+        });
+
+
+
+        const ticket = [];
+        const ticketElement = $("#ticket-items");
+        const totalElement = $("#total-price");
+
+
+
+        $(".book-button").on("click", function () {
+            const card = $(this).closest(".card");
+            const id = card.data("id");
+            const name = card.find("h3").text();
+            const date = card.find("h5:nth-of-type(1)").text();
+            const location = card.find("h5:nth-of-type(2)").text();
+            const price = parseInt(card.find("h4").text().replace("Rs ", ""), 10);
+
+            const item = { id, name, date, location, price, quantity: 1 };
+
+            if (!ticket.some(ticketItem => ticketItem.id === id)) {
+                ticket.push(item);
+                showNotification(`${name} added to your tickets!`, 'success');
+            } else {
+                showNotification(`${name} is already in your ticket`, 'error');
+            }
+
+            updateTicket();
+        });
+
+
+
+        function updateTicket() {
+            ticketElement.empty();
+            let totalPrice = 0;
+
+            ticket.forEach(item => {
+                totalPrice += item.price * item.quantity;
+                ticketElement.append(`
+                <div class="ticket-item">
+                    <h3>${item.name}</h3>
+                    <h4>Rs ${item.price}</h4>
+                    <div>
+                        <label>Quantity:
+                            <input type="number" class="quantity" data-id="${item.id}" value="${item.quantity}" min="1">
+                        </label>
+                    </div>
+                    <button class="remove-from-ticket" data-id="${item.id}">Remove</button>
+                </div>
+            `);
+
+            });
+
+       
+        totalElement.text(`Total Price: Rs ${totalPrice}`);
+
+        
+
+        $(".remove-from-ticket").on("click", function () {
+            const id = $(this).data("id");
+            const index = ticket.findIndex(ticketItem => ticketItem.id === id);
+            if (index !== -1) ticket.splice(index, 1);
+            updateTicket();
+        });
+
+        
+
+
+        $(".quantity").on("input", function () {
+            const id = $(this).data("id");
+            const newQuantity = parseInt($(this).val(), 10);
+            const item = ticket.find(ticketItem => ticketItem.id === id);
+            if (item) {
+                item.quantity = newQuantity > 0 ? newQuantity : 1;
+                updateTicket();
+            }
+        });
+        }
+
+    
+
+        $("#pay-button").on("click", function () {
+            if (ticket.length === 0) {
+                showNotification("Your ticket is empty!", 'error');
+            } else {
+                showNotification("payment successfully", 'success');
+            }
+        });
+
+        
+
+        function showNotification(message, type) {
+            const notification = $("#notification");
+            notification.text(message);
+            notification.css('background-color', type === 'success' ? '#28a745' : '#dc3545'); // Green for success, red for error
+            notification.fadeIn().delay(2000).fadeOut();
+        }
+        });
+
+
+
+        document.getElementById("search-input").addEventListener("keyup", function() {
+            var value = this.value.toLowerCase();
+            var cards = document.querySelectorAll(".card");
+            cards.forEach(function(card) {
+                var title = card.querySelector("h3").textContent.toLowerCase();
+                var location = card.querySelector("h4:nth-child(3)").textContent.toLowerCase();
+                if (title.indexOf(value) > -1 || location.indexOf(value) > -1) {
+                    card.style.display = "inline-block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+
+    </script>
+
+
+</body>
+</html>

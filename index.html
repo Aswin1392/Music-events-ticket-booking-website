@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+    <style>
+        body{
+            background-image: url(images/background.jpg);
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-size: 1520px 730px;
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        *{
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+            box-sizing: border-box;
+
+        }
+
+
+
+
+        nav {
+            background-color: black;
+            height: 80px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        label.logo {
+            color: rgb(255, 183, 0);
+            font-size: 25px;
+            font-family: cursive;
+            font-weight: bold;
+        }
+        nav ul {
+            display: flex;
+        }
+        nav ul li {
+            display: inline-block;
+            margin: 0 5px;
+        }
+        nav ul li a {
+            color: rgb(255, 183, 0);
+            font-size: 15px;
+            padding: 7px 13px;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+        .active:hover {
+            color: white;
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                display: none;
+                background-color: black;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 100%;
+            }
+            nav ul li {
+                text-align: center;
+                margin: 10px 0;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            nav .menu-toggle {
+                display: block;
+                font-size: 25px;
+                color: rgb(255, 183, 0);
+                cursor: pointer;
+            }
+            
+        }
+
+
+
+        #quote{
+            color: white;
+            text-align: center;
+            padding-top:280px ;   
+        }
+        #book-button{
+            color:rgb(255, 183, 0);
+            background-color: black;
+            border: 2px black solid;
+            border-radius: 6px;
+            cursor: pointer;
+            padding: 8px;
+            text-decoration: none;
+        }
+        #book-button-div{
+            text-align: center;
+        }
+        #book-button:hover{
+           color: white;
+            
+        }
+
+
+
+
+        #upcoming{
+            
+            min-height: 4vh;
+            display: grid;
+            padding-top: 200px;
+
+        }
+        #upcoming_h1{
+            color:rgb(255, 183, 0);
+            margin-left: 20px;
+        }
+        .slider{
+            height: 150px;
+            margin: auto;
+            position: relative;
+            width: 90%;
+            display: grid;
+            padding-top: 10px;
+            
+        }
+        .slider-track{
+            display: flex;
+            width: calc(250px*16);
+            animation: scroll 40s linear infinite;
+        }
+        .slider-track:hover{
+            animation-play-state: paused;
+        }
+        @keyframes scroll{
+            0%{
+                transform: translateX(0);
+            }
+            100%{
+                transform: translateX(calc(-250px*8));
+            }
+        }
+        .slide{
+            height: 350px;
+            width: 300px ;
+            display: flex;
+            align-items: center;
+            padding: 23px;
+            perspective: 220px;
+        }
+        .slide-image{
+            width: 250px;
+            height: 330px;
+            transition: transform 1%;
+        }
+        .slide-image:hover{
+            transform: translateZ(20px);
+        }
+
+       
+
+        #about {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 125px;
+            padding-top: 70px;
+            margin-left: 20px;
+            color: white;
+            flex-wrap: wrap; 
+        }
+        #about-left {
+            flex: 1;
+            width: 60%; 
+        }
+
+        #about-right {
+            flex: 1;
+            width: 35%; 
+        }
+        
+        #about_h1 {
+            padding-top: 20px;
+        }
+
+        #about_p {
+            width: 800px;
+            text-align: justify;
+            margin-top: 20px;
+        }
+        #ticket-booking {
+            flex: 1;
+            width: 455px;;
+            height: 350px;
+            border: 2px solid black;
+            border-radius: 8px;
+            margin-top: 70px;
+        }
+        @media (max-width: 768px) {
+            
+            #about {
+                margin-top: 30px;
+                flex-direction: column; 
+                padding: 10px;
+                text-align: center; 
+            }
+
+            #about-left, #about-right {
+                width: 100%;
+                margin-bottom: 20px; 
+            }
+
+            #about_h1{
+                padding-top: 20px;
+            }
+
+            #about_p {
+                width: 100%; 
+                margin: 0 auto; 
+                padding: 0 10px; 
+            }
+
+            #ticket-booking {
+                max-width: 100%;
+                height: auto; 
+                margin: 0 auto; 
+            }
+        }
+        @media (max-width: 480px) {
+        
+            #ticket-booking {
+                width: 90%; 
+            }
+        }
+
+
+
+        #contact {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 20px;
+        } 
+        .contact-details {
+            flex: 1;
+            max-width: 60%; 
+        }
+        .contact-info {
+            margin-bottom: 20px; 
+        }
+        #contact_h1{
+            padding-top: 10px;
+        }
+        strong{
+            color:  rgb(255, 183, 0);
+        }
+        #contact p{
+            color: white;
+            padding-top: 10px;
+        }
+        iframe {
+            flex: 1;
+            max-width: 31%;
+            height: 250px;
+            border: 2px solid black;
+            border-radius: 8px;
+            margin-top: 30px; 
+            margin-right: 95px;
+        }
+        h1 {
+            color: rgb(255, 183, 0);
+        }
+        .contact-info p {
+            margin: 5px 0;
+        }
+        a {
+            color: white;
+            text-decoration: none;
+        }
+        a:hover {
+            color: rgb(255, 183, 0);
+            text-decoration: none;
+        }
+        .social-media ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+        .social-media ul li {
+            display: inline;
+        }
+        .social-media ul li a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .social-media ul li a:hover {
+            color: rgb(255, 183, 0);
+            text-decoration: none;
+        }
+
+
+       
+        footer {
+        color:white;
+        text-align: center;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        }
+        footer .container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        footer .container div {
+            flex: 1;
+            min-width: 150px;
+            margin: 10px;
+        }
+        footer h3 {
+            margin-bottom: 10px;
+            color: rgb(255, 183, 0);
+        }
+        footer p, footer ul, footer a {
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: rgb(255, 183, 0);
+            text-decoration: none;
+        }
+        footer hr {
+            border: 0;
+            height: 1px;
+            background-color:rgb(255, 183, 0);
+        }
+
+    </style>
+</head>
+<body style="background-color: black;">
+
+
+
+    <nav>
+        <label class="logo">Fiesta</label>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <ul>
+            <li><a class="active" href="index.html">Home</a></li>
+            <li><a class="active" href="search.html">Events</a></li>
+            <li><a class="active" href="#upcoming">Upcoming</a></li>
+            <li><a class="active" href="#about">About</a></li>
+            <li><a class="active" href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    
+    <h1 id="quote">Your Gateway To Epic Nights<br>Click-Book-Celebrate</h1><br>
+    <div id="book-button-div">
+        <a id="book-button" href="search.html">Book Now</a>
+    </div>
+    <br><br><br><br><br><br><br><br><br>
+
+
+
+    <section id="upcoming">
+        <h1 id="upcoming_h1">Upcoming Events</h1>
+
+        <div class="slider">
+            <div class="slider-track">
+                <div class="slide">
+                    <img class="slide-image" src="images/upcoming2.jpg">
+
+                </div>
+                <div class="slide">
+                    <img  class="slide-image"src="images/upcoming3.jpg">
+
+                </div>
+                <div class="slide">
+                    <img class="slide-image" src="images/upcoming4.jpg">
+
+                </div>
+                <div class="slide">
+                    <img  class="slide-image" src="images/upcoming5.jpg">
+
+                </div>
+                <div class="slide">
+                    <img class="slide-image" src="images/upcoming7.jpg">
+
+                </div>
+                <div class="slide">
+                    <img class="slide-image" src="images/upcoming8.jpg">
+
+                </div>
+                <div class="slide">
+                    <img class="slide-image" src="images/upcoming9.jpg">
+
+                </div>
+                <div class="slide">
+                    <img class="slide-image" src="images/upcoming10.jpg">
+
+                </div>
+                <div class="slide">
+                    <img class="slide-image" src="images/upcoming2.jpg">
+
+                </div>
+                <div class="slide">
+                    <img class="slide-image" src="images/upcoming3.jpg">
+
+                </div>
+                <div class="slide">
+                    <img class="slide-image" src="images/upcoming4.jpg">
+
+                </div>
+                <div class="slide">
+                    <img class="slide-image" src="images/upcoming5.jpg">
+
+                </div>
+                <div class="slide">
+                    <img class="slide-image" src="images/upcoming7.jpg">
+
+                </div>
+                <div class="slide">
+                    <img  class="slide-image" src="images/upcoming8.jpg">
+
+                </div>
+                <div class="slide">
+                    <img class="slide-image" src="images/upcoming9.jpg">
+
+                </div>
+                <div class="slide">
+                    <img class="slide-image" src="images/upcoming10.jpg">
+
+                </div>
+
+            </div>
+
+        </div>  
+
+    </section>
+    <br><br><br><br><br><br><br><br>
+
+
+
+
+    <section id="about">
+        <div id="about-left">
+            <h1 id="about_h1">About Us</h1>
+            <p id="about_p">Welcome to <strong>Fiesta</strong>, the ultimate platform designed to bring music lovers together and offer a seamless experience for booking tickets to the best DJ parties and live music concerts in your city. At Fiesta, we believe in the power of live entertainment and the unforgettable experiences it creates. Whether you’re looking to attend an electrifying DJ party, a sensational music concert, or both, Fiesta ensures that every event is just a few clicks away.<br><br>
+                We are passionate about helping you discover and enjoy the best live events happening in cities like Bangalore, Kochi, and Chennai. Our website offers an easy-to-use interface where users can search for events by location and type, browse through detailed event listings, and purchase tickets with confidence. We take pride in offering a variety of events that cater to all music tastes, ensuring there’s something for everyone—from intimate club nights to large-scale concerts.<br><br>
+                Fiesta is committed to offering exclusive access to premium events, early bird tickets, and special discounts for our registered users. Our platform is built with you in mind, providing real-time updates on event schedules, ticket availability, and lineup announcements. We want you to have the best possible experience, so we also provide tailored event recommendations based on your preferences, ensuring you never miss out on the latest parties or concerts.<br><br>
+                Our mission is to revolutionize the way people experience live music, making it easier than ever to book tickets and get excited about the next big event. Whether you're a casual party-goer or a dedicated concert enthusiast, Fiesta is the perfect place to discover new events, connect with fellow music lovers, and create lasting memories.
+                With a dedicated customer support team, easy navigation, and a focus on providing the best prices, Fiesta is your trusted companion for all things music and entertainment. Join us and be part of a community where the music never stops!
+            </p>
+        </div>
+        <div id="about-right">
+            <img id="ticket-booking" src="images/ticket-booking.webp" alt="Ticket Booking">
+        </div>
+    </section>
+
+
+
+
+    <section id="contact">
+        <div class="contact-details">
+            <h1 id="contact_h1">Contact Us</h1>
+            <p>Have questions or need assistance? We’re here to help!</p>
+            <p><strong>Head Office:</strong> Fiesta HQ, Bangalore, Karnataka, 560001</p>
+            <p><strong>Email:</strong> <a href="mailto:support@fiesta.com">support@fiesta.com</a></p>
+            <p><strong>Phone:</strong> +91-9876543210</p>
+            <p>Or fill out our <a href="#contact-form">contact form</a> to get in touch. We’ll respond within 24 hours!</p>
+            <div class="social-media">
+                <p><strong>Follow us on:</strong></p><br>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <iframe src="https://www.google.com/maps/embed?..."></iframe>
+    </section>
+    
+
+
+    
+    <div>
+        <footer>
+            <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between;">
+    
+                <div style="flex: 1; min-width: 250px; margin: 10px;">
+                    <h3>About Fiesta</h3>
+                    <p>Fiesta is your go-to platform for booking tickets to the best DJ parties and music concerts in all over India. Experience the thrill of live events like never before!</p>
+                </div>
+                
+                <div style="flex: 1; min-width: 150px; margin: 10px;">
+                    <h3>Quick Links</h3>
+                    <ul style="list-style: none; padding: 0; line-height: 1.8;">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="search.html">Events</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div style="flex: 1; min-width: 250px; margin: 10px;">
+                    <h3>Contact Us</h3>
+                    <p>Email: support@fiesta.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                    <p>Address: Fiesta HQ, Bangalore, India</p>
+                </div>
+            
+                <div style="flex: 1; min-width: 150px; margin: 10px;">
+
+                    <h3>Follow us</h3>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <hr>
+            <p style="margin-top: 10px;">© 2024 Fiesta. All Rights Reserved. | <a href="#privacy" style="color: #ffffff; text-decoration: none;">Privacy Policy</a> | <a href="#terms" style="color: #ffffff; text-decoration: none;">Terms of Service</a></p>
+        </footer>
+
+    </div>
+
+
+
+    
+    <script>
+        function toggleMenu() {
+            document.querySelector('nav ul').classList.toggle('active');
+        }
+    </script>
+    
+</body>
+</html>
